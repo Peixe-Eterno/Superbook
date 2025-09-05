@@ -17,31 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from heroes import views
-from login import views
-from contato import views
-from posts import views
+from heroes.views import *
+from posts.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    # login urls
-    path('superbook/login/', views.login, name='login'),
-    path('superbook/login/', views.logout, name='logout'),
-    path('superbook/cadastro/', views.cadastro, name='cadastro'),
+    path('posts/', show_posts, name='lista_posts'),
+    path('heroes/', show_heroes, name='lista_herois'),
+    path('contato/', contato_view, name='contato'),
+    path('novo/', criar_heroi, name='criar_heroi'),
+    path('novo_post/', criar_post, name='criar_post'),
+    
 
-    # posts urls
-    path('superbook/posts/', views.show_posts, name='show_posts'),
-    path('superbook/posts/', views.dar_like, name='like'),
-    path('superbook/posts/', views.dar_deslike, name='deslike'),
-    path('superbook/posts/', views.comentar, name='comentar'),
-    path('superbook/posts/', views.deletar_comentario, name='deletar_comentario'),
-
-    # heroes(Profile) urls
-    path('superbook/heroes/<int:pk>', views.show_heroes, name='show_heroes'),
-    path('superbook/myprofile/', views.show_hero, name='show_hero'),
-
-    # contato(Messages) urls
-    path('superbook/contato/', views.show_contato, name='show_contato'),
-    path('superbook/contato/<int:pk>/', views.conversa, name='conversa'),
 ]
